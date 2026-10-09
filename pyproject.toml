@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "g73-uba"
+version = "1.0.0"
+description = "G73 prototype: UBA + ML detection of a compromised-credential ransomware intrusion (Change Healthcare 2024 replay)"
+requires-python = ">=3.10"
+dependencies = ["numpy", "pandas", "scikit-learn", "xgboost"]
+
+[project.optional-dependencies]
+dev = ["pytest", "pyinstaller"]
+
+[project.scripts]
+g73-uba = "g73uba.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

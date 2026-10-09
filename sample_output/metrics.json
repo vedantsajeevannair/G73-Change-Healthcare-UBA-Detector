@@ -1,0 +1,299 @@
+{
+  "seed": 7,
+  "fpr_budget": 0.002,
+  "period": {
+    "train": "2024-01-15 to 2024-01-28",
+    "validation": "2024-01-29 to 2024-02-04",
+    "test": "2024-02-05 to 2024-02-23"
+  },
+  "counts": {
+    "train": 14357,
+    "validation": 7245,
+    "test": 19457,
+    "test_attack": 93,
+    "process_events": 32979
+  },
+  "initial_access": "2024-02-12 02:13:00",
+  "encryption": "2024-02-21 04:40:00",
+  "weights": {
+    "isolation_forest": 0.1,
+    "autoencoder": 0.4,
+    "xgboost": 0.5
+  },
+  "threshold": 0.9852779020013802,
+  "metrics": {
+    "isolation_forest": {
+      "tp": 55,
+      "fp": 52,
+      "fn": 38,
+      "tn": 19312,
+      "recall": 0.5913978494623656,
+      "fpr": 0.0026853955794257384,
+      "precision": 0.514018691588785
+    },
+    "autoencoder": {
+      "tp": 80,
+      "fp": 130,
+      "fn": 13,
+      "tn": 19234,
+      "recall": 0.8602150537634409,
+      "fpr": 0.006713488948564346,
+      "precision": 0.38095238095238093
+    },
+    "xgboost": {
+      "tp": 93,
+      "fp": 53,
+      "fn": 0,
+      "tn": 19311,
+      "recall": 1.0,
+      "fpr": 0.0027370378021070027,
+      "precision": 0.636986301369863
+    },
+    "ensemble": {
+      "tp": 92,
+      "fp": 40,
+      "fn": 1,
+      "tn": 19324,
+      "recall": 0.989247311827957,
+      "fpr": 0.002065688907250568,
+      "precision": 0.696969696969697
+    },
+    "rule_layer": {
+      "alerts": 37,
+      "true_alerts": 37,
+      "false_alerts": 0
+    }
+  },
+  "timeline": [
+    {
+      "phase": "initial_access",
+      "events": 2,
+      "first_alert": "2024-02-12 02:13",
+      "first_alert_by": "ML ensemble",
+      "hours_before_encryption": 218.4
+    },
+    {
+      "phase": "tooling",
+      "events": 3,
+      "first_alert": "2024-02-12 03:26",
+      "first_alert_by": "ML ensemble",
+      "hours_before_encryption": 217.2
+    },
+    {
+      "phase": "credential_abuse",
+      "events": 14,
+      "first_alert": "2024-02-12 07:22",
+      "first_alert_by": "ML ensemble",
+      "hours_before_encryption": 213.3
+    },
+    {
+      "phase": "lateral_movement",
+      "events": 68,
+      "first_alert": "2024-02-13 01:00",
+      "first_alert_by": "ML ensemble",
+      "hours_before_encryption": 195.7
+    },
+    {
+      "phase": "impact",
+      "events": 6,
+      "first_alert": "2024-02-21 04:05",
+      "first_alert_by": "ML ensemble",
+      "hours_before_encryption": 0.6
+    }
+  ],
+  "first_true_alert": "2024-02-12 02:13:00",
+  "lead_time_hours": 218.4,
+  "false_alerts_per_day": 2.11,
+  "importance": [
+    {
+      "feature": "fraction_from_same_src",
+      "label": "How often the account logs in from this source",
+      "mean_abs_shap": 5.001135349273682
+    },
+    {
+      "feature": "src_logged_on",
+      "label": "Account had a real session on the source host",
+      "mean_abs_shap": 3.314223051071167
+    },
+    {
+      "feature": "prev_login_hour_fraction",
+      "label": "How usual this hour is for the account",
+      "mean_abs_shap": 3.129101276397705
+    },
+    {
+      "feature": "process_rarity",
+      "label": "How rare that process is in the baseline",
+      "mean_abs_shap": 1.1706496477127075
+    },
+    {
+      "feature": "other_interactive_logins",
+      "label": "Hosts the account is logged in to at once",
+      "mean_abs_shap": 0.3426670432090759
+    },
+    {
+      "feature": "outbound_volume_ratio",
+      "label": "Destination outbound bytes vs its baseline",
+      "mean_abs_shap": 0.14067456126213074
+    },
+    {
+      "feature": "process_run",
+      "label": "New process started right after the login",
+      "mean_abs_shap": 0.12123899161815643
+    },
+    {
+      "feature": "gateway_new_device",
+      "label": "First time this device / location at the gateway",
+      "mean_abs_shap": 0.010504568926990032
+    },
+    {
+      "feature": "is_remote",
+      "label": "Remote login (source != destination)",
+      "mean_abs_shap": 0.007189825642853975
+    },
+    {
+      "feature": "failed_logins_last_hour",
+      "label": "Failed logins from the same source (1 h)",
+      "mean_abs_shap": 0.0011340546188876033
+    },
+    {
+      "feature": "gateway_no_mfa",
+      "label": "Gateway login without a second factor",
+      "mean_abs_shap": 0.0
+    }
+  ],
+  "daily": [
+    {
+      "day": "2024-02-05",
+      "max_risk": 0.9947412008281573,
+      "events": 1290,
+      "alerts": 3,
+      "attack": 0
+    },
+    {
+      "day": "2024-02-06",
+      "max_risk": 0.9927536231884058,
+      "events": 1321,
+      "alerts": 1,
+      "attack": 0
+    },
+    {
+      "day": "2024-02-07",
+      "max_risk": 0.9928088336783989,
+      "events": 1300,
+      "alerts": 2,
+      "attack": 0
+    },
+    {
+      "day": "2024-02-08",
+      "max_risk": 0.995072463768116,
+      "events": 1335,
+      "alerts": 5,
+      "attack": 0
+    },
+    {
+      "day": "2024-02-09",
+      "max_risk": 0.9958454106280193,
+      "events": 1352,
+      "alerts": 4,
+      "attack": 0
+    },
+    {
+      "day": "2024-02-10",
+      "max_risk": 0.9658523119392686,
+      "events": 252,
+      "alerts": 0,
+      "attack": 0
+    },
+    {
+      "day": "2024-02-11",
+      "max_risk": 0.9521325051759835,
+      "events": 178,
+      "alerts": 0,
+      "attack": 0
+    },
+    {
+      "day": "2024-02-12",
+      "max_risk": 0.9999033816425121,
+      "events": 1303,
+      "alerts": 19,
+      "attack": 19
+    },
+    {
+      "day": "2024-02-13",
+      "max_risk": 1.0,
+      "events": 1374,
+      "alerts": 10,
+      "attack": 7
+    },
+    {
+      "day": "2024-02-14",
+      "max_risk": 1.0,
+      "events": 1328,
+      "alerts": 11,
+      "attack": 9
+    },
+    {
+      "day": "2024-02-15",
+      "max_risk": 1.0,
+      "events": 1322,
+      "alerts": 12,
+      "attack": 8
+    },
+    {
+      "day": "2024-02-16",
+      "max_risk": 1.0,
+      "events": 1332,
+      "alerts": 12,
+      "attack": 8
+    },
+    {
+      "day": "2024-02-17",
+      "max_risk": 1.0,
+      "events": 231,
+      "alerts": 7,
+      "attack": 7
+    },
+    {
+      "day": "2024-02-18",
+      "max_risk": 1.0,
+      "events": 183,
+      "alerts": 8,
+      "attack": 7
+    },
+    {
+      "day": "2024-02-19",
+      "max_risk": 1.0,
+      "events": 1282,
+      "alerts": 10,
+      "attack": 8
+    },
+    {
+      "day": "2024-02-20",
+      "max_risk": 1.0,
+      "events": 1315,
+      "alerts": 8,
+      "attack": 8
+    },
+    {
+      "day": "2024-02-21",
+      "max_risk": 1.0,
+      "events": 1360,
+      "alerts": 17,
+      "attack": 12
+    },
+    {
+      "day": "2024-02-22",
+      "max_risk": 0.9955831608005521,
+      "events": 1343,
+      "alerts": 3,
+      "attack": 0
+    },
+    {
+      "day": "2024-02-23",
+      "max_risk": 0.9662663906142168,
+      "events": 56,
+      "alerts": 0,
+      "attack": 0
+    }
+  ]
+}
