@@ -32,12 +32,9 @@ alert queue for a SOC analyst.
 
 ## 1. Quick start – executable (no Python needed)
 
-The zip contains ready-built executables in `exe/`:
-
-| OS | File |
-|---|---|
-| Windows 10/11 (64-bit) | `exe/windows/g73-uba.exe` |
-| macOS (Apple Silicon) | `exe/macos/g73-uba` |
+The zip contains the ready-built Windows executable `exe/windows/g73-uba.exe`.
+Builds for macOS (Apple Silicon) and Linux are on the GitHub Releases page:
+https://github.com/vedantsajeevannair/G73-Change-Healthcare-UBA-Detector/releases
 
 **Windows:** open *Command Prompt* in the `exe\windows` folder and run
 
@@ -45,18 +42,22 @@ The zip contains ready-built executables in `exe/`:
 g73-uba.exe --open
 ```
 
-**macOS:** open *Terminal* in the `exe/macos` folder and run
+**macOS:** download `g73-uba-macos` from Releases, open *Terminal* in that folder and run
 
 ```
-chmod +x g73-uba
-./g73-uba --open
+chmod +x g73-uba-macos
+./g73-uba-macos --open
 ```
 
 (If macOS blocks it the first time: System Settings → Privacy & Security →
 *Open Anyway*.)
 
 The run takes about 10–30 seconds (the first launch can take a minute while the
-executable unpacks and the OS scans it). It creates an `output/` folder next to the
+executable unpacks and the OS scans it).
+
+Small differences in the numbers between Windows, macOS and Linux are expected
+(different XGBoost builds and floating-point order); `sample_output/` was made
+on macOS with seed 7. It creates an `output/` folder next to the
 executable and, with `--open`, opens `output/report.html` in the browser.
 
 ## 2. Run from source (Python 3.10 – 3.13)
@@ -165,7 +166,7 @@ G73_Implementation/
 │   └── cli.py                 # command line
 ├── tests/test_pipeline.py
 ├── sample_output/             # output of the default run (seed 7)
-├── exe/                       # built executables
+├── exe/windows/g73-uba.exe     # built executable (macOS/Linux: GitHub Releases)
 └── .github/workflows/build.yml
 ```
 
